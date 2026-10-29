@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Primeiro Clique: tecnologia para o primeiro emprego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F4F9;--surface:#fff;--ink:#10224A;--muted:#55638A;--line:#D6DCEB;--accent:#2F5BFF;--on-accent:#fff;--mark:#FFC93C;--warn:#FFF3D1;--warn-ink:#5A4300;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1630;--surface:#16213F;--ink:#E8ECFA;--muted:#9FAAD0;--line:#2A3760;--accent:#7C9BFF;--on-accent:#0E1630;--warn:#3A3012;--warn-ink:#FFE9A8}}
+:root[data-theme="dark"]{--bg:#0E1630;--surface:#16213F;--ink:#E8ECFA;--muted:#9FAAD0;--line:#2A3760;--accent:#7C9BFF;--on-accent:#0E1630;--warn:#3A3012;--warn-ink:#FFE9A8}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{display:inline-block;font:600 16px Figtree,sans-serif;background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:13px 22px;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+/* hero */
+.hero{padding:72px 0 56px}
+.hero h1{font-size:clamp(44px,9vw,104px);font-weight:800;letter-spacing:-.03em;max-width:11ch}
+.hero h1 i{font-style:normal;background:linear-gradient(transparent 62%,var(--mark) 62% 92%,transparent 92%)}
+.hero p{max-width:56ch;font-size:19px;color:var(--muted);margin:22px 0 30px}
+.cta{position:relative;display:inline-block}
+.cta::after{content:"";position:absolute;inset:-6px;border-radius:16px;border:3px solid var(--mark);opacity:0;animation:ring .7s 1.5s ease-out 1}
+.cur{position:absolute;right:-6px;bottom:-22px;width:30px;pointer-events:none;animation:cur 1.5s ease-out 1 both}
+@keyframes cur{from{transform:translate(160px,120px);opacity:0}30%{opacity:1}to{transform:translate(0,0);opacity:1}}
+@keyframes ring{0%{opacity:1;transform:scale(.96)}100%{opacity:0;transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.cta::after,.cur{animation:none}.cur{opacity:1}}
+/* oficinas */
+.sec{padding:48px 0}
+.sec h2{font-size:clamp(28px,4vw,40px);margin-bottom:8px}
+.sec>.wrap>p{color:var(--muted);max-width:62ch;margin:0 0 26px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:0;border-left:3px solid var(--line);max-width:720px}
+.steps li{counter-increment:s;position:relative;padding:4px 0 22px 28px}
+.steps li::before{content:counter(s);position:absolute;left:-15px;top:2px;width:27px;height:27px;border-radius:50%;background:var(--surface);border:2px solid var(--line);font:700 13px/23px Figtree;text-align:center}
+.steps li.on::before{background:var(--mark);border-color:var(--mark);color:#10224A}
+.steps b{display:block;font-size:17px}
+.steps span{color:var(--muted)}
+.alert{background:var(--warn);color:var(--warn-ink);border-radius:12px;padding:18px 22px;max-width:720px;margin-top:8px}
+.alert b{display:block;margin-bottom:4px}
+.alert ul{margin:6px 0 0;padding-left:20px}
+/* builder */
+.build{display:grid;gap:28px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:1000px){.build{grid-template-columns:minmax(0,480px) minmax(0,1fr)}.pv{position:sticky;top:16px}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+fieldset{border:0;margin:0 0 22px;padding:0}
+legend{font:800 20px 'Bricolage Grotesque',Figtree,sans-serif;padding:0;margin-bottom:4px}
+.tip{font-size:14px;color:var(--muted);margin:0 0 12px}
+label{display:block;font-size:14px;font-weight:600;margin:10px 0 4px}
+input,textarea{width:100%;font:400 16px Figtree,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{resize:vertical;min-height:84px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.item{border:1px dashed var(--line);border-radius:10px;padding:4px 12px 12px;margin-bottom:10px;position:relative}
+.rm{position:absolute;top:6px;right:6px;background:none;border:0;color:var(--muted);font:600 13px Figtree;cursor:pointer;text-decoration:underline}
+.add{background:none;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:7px 14px;font:600 14px Figtree;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips button{background:var(--accent);color:var(--on-accent);border:0;border-radius:99px;padding:4px 12px;font:500 14px Figtree;cursor:pointer}
+.meter{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0 4px}
+.meter div{height:100%;width:0;background:var(--accent);transition:width .25s}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+#msg{font-size:14px;color:var(--muted);min-height:22px;margin:8px 0 0}
+.pvwrap{overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#fff}
+#scale{transform-origin:top left;width:794px}
+/* papel do currículo (cores fixas, sempre branco) */
+.paper{width:794px;min-height:1120px;background:#fff;color:#1b2540;font:400 14px/1.45 Figtree,Arial,sans-serif;padding:48px 52px}
+.paper h1{font:800 36px/1.1 'Bricolage Grotesque',Figtree,sans-serif;color:#10224A;margin:0;letter-spacing:-.01em}
+.paper .role{color:#2F5BFF;font-weight:600;font-size:17px;margin-top:4px}
+.paper .ct{margin-top:10px;color:#55638A;font-size:13px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.paper h2{font:700 14px Figtree,Arial,sans-serif;color:#10224A;margin:24px 0 9px;padding-bottom:4px;border-bottom:2px solid #FFC93C}
+.paper .it{margin-bottom:10px}.paper .it b{display:block;color:#10224A}.paper .it span{color:#55638A;font-size:13px}.paper p{margin:0;white-space:pre-line}
+.paper .sk span{display:inline-block;background:#EAEFFF;color:#10224A;border-radius:99px;padding:3px 12px;margin:0 6px 6px 0;font-size:13px}
+.paper .ph{color:#A5AEC8}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:600 16px Figtree,sans-serif;padding:14px 16px 11px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--mark)}
+footer{padding:34px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<nav class="tabs" role="tablist" aria-label="Seções do site"><div class="wrap">
+  <button role="tab" data-go="inicio" aria-selected="true">Início</button>
+  <button role="tab" data-go="oficinas" aria-selected="false" tabindex="-1">Oficinas</button>
+  <button role="tab" data-go="curriculo" aria-selected="false" tabindex="-1">Montar currículo</button>
+</div></nav>
+
+<header class="hero" id="inicio" data-tab="inicio"><div class="wrap">
+  <h1>Seu <i>primeiro clique</i> rumo ao trabalho</h1>
+  <p>Oficinas gratuitas de inclusão digital para jovens de 16 a 24 anos que buscam o primeiro emprego, conduzidas por estudantes de Sistemas de Informação. Comece agora: monte seu currículo aqui mesmo e salve em PDF.</p>
+  <span class="cta"><a class="btn" href="#curriculo">Montar meu currículo</a>
+  <svg class="cur" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 9-7 2-3 7z" fill="#10224A" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+</div></header>
+
+<section class="sec" id="oficinas" data-tab="oficinas" hidden><div class="wrap">
+  <h2>Seis oficinas, uma por semana</h2>
+  <p>Cada encontro dura de 2 a 3 horas, é prático e feito em duplas, com apoio de monitores. A primeira você faz agora, na página.</p>
+  <ol class="steps">
+    <li class="on"><b>Currículo</b><span>Dados, objetivo, formação, cursos, projetos e habilidades, mesmo sem experiência. <a href="#curriculo"><b style="display:inline">Montar agora</b></a></span></li>
+    <li><b>E-mail profissional</b><span>Endereço adequado, assinatura, assunto e e-mail de candidatura com currículo anexo.</span></li>
+    <li><b>Pesquisa de vagas</b><span>Filtros, palavras-chave, alertas e uma planilha para organizar candidaturas.</span></li>
+    <li><b>Formulários on-line</b><span>Cadastros de seleção, documentos digitalizados pelo celular e envio de arquivos.</span></li>
+    <li><b>Segurança digital</b><span>Golpes de vaga falsa, dados pessoais, senhas seguras e verificação em duas etapas.</span></li>
+    <li><b>Entrevista digital</b><span>Ambiente, câmera, áudio, postura e simulações gravadas com feedback.</span></li>
+  </ol>
+  <div class="alert"><b>Vaga que pede dinheiro é golpe</b>Desconfie quando a oferta:
+    <ul><li>cobra taxa, curso ou material para “garantir” a vaga;</li><li>pede senhas ou códigos de verificação;</li><li>pede documentos completos antes de qualquer entrevista.</li></ul></div>
+</div></section>
+
+<section class="sec" id="curriculo" data-tab="curriculo" hidden><div class="wrap">
+  <h2>Oficina 1: monte seu currículo</h2>
+  <p>Preencha ao lado e veja o resultado na hora. Ao final, salve em PDF para enviar às empresas. Seus dados ficam só neste aparelho.</p>
+  <div class="build">
+    <div class="panel" id="form">
+      <fieldset><legend>Seus dados</legend>
+        <p class="tip">Não coloque CPF, RG nem endereço completo. Cidade e estado bastam.</p>
+        <label for="nome">Nome completo</label><input id="nome" data-k="nome" autocomplete="name">
+        <label for="cargo">Área ou vaga que você procura</label><input id="cargo" data-k="cargo" placeholder="Ex.: Auxiliar administrativo, jovem aprendiz">
+        <div class="row"><div><label for="email">E-mail</label><input id="email" data-k="email" type="email" autocomplete="email" placeholder="nome.sobrenome@…"></div>
+        <div><label for="tel">Telefone com WhatsApp</label><input id="tel" data-k="tel" type="tel" autocomplete="tel" placeholder="(75) 90000-0000"></div></div>
+        <label for="cidade">Cidade e estado</label><input id="cidade" data-k="cidade" autocomplete="address-level2" placeholder="Ex.: Alagoinhas, BA">
+        <p class="tip" style="margin-top:6px">Dica: use um e-mail com seu nome e sobrenome, sem apelidos.</p>
+      </fieldset>
+      <fieldset><legend>Objetivo</legend>
+        <p class="tip">Sem experiência? Diga o que você quer aprender e o que já sabe fazer, em 2 ou 3 linhas.</p>
+        <label for="resumo" class="sr" style="position:absolute;left:-9999px">Objetivo</label><textarea id="resumo" data-k="resumo"></textarea>
+      </fieldset>
+      <fieldset><legend>Formação</legend><div id="L-edu"></div><button class="add" data-add="edu">Adicionar formação</button></fieldset>
+      <fieldset><legend>Cursos</legend><p class="tip">Oficinas, cursos on-line e cursos livres também contam.</p><div id="L-cur"></div><button class="add" data-add="cur">Adicionar curso</button></fieldset>
+      <fieldset><legend>Projetos e atividades</legend><p class="tip">Trabalho voluntário, grupos da escola, ajuda em negócio da família: tudo mostra o que você sabe fazer.</p><div id="L-proj"></div><button class="add" data-add="proj">Adicionar projeto</button></fieldset>
+      <fieldset><legend>Habilidades</legend>
+        <label for="hab">Digite e aperte Enter</label><input id="hab" placeholder="Ex.: Comunicação, Excel, trabalho em equipe">
+        <div class="chips" id="chips"></div>
+      </fieldset>
+    </div>
+    <aside class="pv">
+      <div class="panel" style="margin-bottom:14px">
+        <b id="mt">Currículo 0 de 8 itens preenchidos</b>
+        <div class="meter" aria-hidden="true"><div id="mb"></div></div>
+        <div class="actions"><button class="btn" id="pdf">Salvar em PDF</button><button class="btn ghost" id="clr">Limpar tudo</button></div>
+        <p id="msg" role="status" aria-live="polite"></p>
+      </div>
+      <div class="pvwrap" id="pw"><div id="scale"><article class="paper" id="paper" aria-label="Pré-visualização do currículo"></article></div></div>
+    </aside>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Projeto de extensão do curso de Sistemas de Informação, 4º semestre, 2026. Oficinas gratuitas, sem cobrança de qualquer valor.</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const KEY='primeiro-clique-v1';
+const blank=()=>({nome:'',cargo:'',email:'',tel:'',cidade:'',resumo:'',edu:[{a:'',b:'',c:''}],cur:[],proj:[],hab:[]});
+const LISTS={
+  edu:{f:[['a','Curso ou série','Ex.: Ensino Médio'],['b','Escola ou instituição',''],['c','Período','Ex.: 2023 a 2025']],ta:false},
+  cur:{f:[['a','Nome do curso','Ex.: Informática básica'],['b','Onde fez',''],['c','Ano ou carga horária','Ex.: 2025, 40 h']],ta:false},
+  proj:{f:[['a','Título','Ex.: Feira de ciências'],['b','O que você fez','Conte em uma ou duas frases']],ta:true}
+};
+let S=blank();
+try{const r=localStorage.getItem(KEY);if(r){S=Object.assign(blank(),JSON.parse(r))}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+function renderList(k){
+  const L=LISTS[k];
+  $('#L-'+k).innerHTML=S[k].map((it,i)=>`<div class="item"><button class="rm" data-rm="${k}" data-i="${i}">Remover</button>`+
+    L.f.map(([f,lab,ph],j)=>`<label for="${k}${i}${f}">${lab}</label>`+(L.ta&&j===1?`<textarea id="${k}${i}${f}" data-l="${k}" data-i="${i}" data-f="${f}" placeholder="${ph}">${esc(it[f])}</textarea>`:`<input id="${k}${i}${f}" data-l="${k}" data-i="${i}" data-f="${f}" value="${esc(it[f])}" placeholder="${ph}">`)).join('')+`</div>`).join('');
+}
+function renderChips(){
+  $('#chips').innerHTML=S.hab.map((h,i)=>`<button data-h="${i}" aria-label="Remover ${esc(h)}">${esc(h)} ×</button>`).join('');
+}
+function renderPaper(){
+  const sec=(t,h)=>h?`<h2>${t}</h2>${h}`:'';
+  const item=(a,b,c)=>(a||b||c)?`<div class="it"><b>${esc(a)}</b><span>${[b,c].filter(Boolean).map(esc).join(' · ')}</span></div>`:'';
+  const ct=[S.email,S.tel,S.cidade].filter(Boolean).map(esc).map(x=>`<span>${x}</span>`).join('');
+  $('#paper').innerHTML=
+    `<h1>${S.nome?esc(S.nome):'<span class="ph">Seu nome aparece aqui</span>'}</h1>`+
+    (S.cargo?`<div class="role">${esc(S.cargo)}</div>`:'')+(ct?`<div class="ct">${ct}</div>`:'')+
+    sec('Objetivo',S.resumo.trim()?`<p>${esc(S.resumo)}</p>`:'')+
+    sec('Formação',S.edu.map(e=>item(e.a,e.b,e.c)).join(''))+
+    sec('Cursos',S.cur.map(e=>item(e.a,e.b,e.c)).join(''))+
+    sec('Projetos e atividades',S.proj.map(e=>(e.a||e.b)?`<div class="it"><b>${esc(e.a)}</b><p>${esc(e.b)}</p></div>`:'').join(''))+
+    sec('Habilidades',S.hab.length?`<div class="sk">${S.hab.map(h=>`<span>${esc(h)}</span>`).join('')}</div>`:'');
+  const done=[S.nome,S.cargo,S.email,S.tel,S.cidade,S.resumo.trim(),S.edu.some(e=>e.a),S.hab.length>=3].filter(Boolean).length;
+  $('#mt').textContent=`Currículo: ${done} de 8 itens preenchidos`;
+  $('#mb').style.width=done/8*100+'%';
+  $('#pdf').disabled=!S.nome.trim();
+  fit();
+}
+function fit(){
+  const w=$('#pw').clientWidth,s=Math.min(1,w/794),sc=$('#scale');
+  sc.style.transform=`scale(${s})`;
+  $('#pw').style.height=Math.ceil($('#paper').offsetHeight*s)+'px';
+}
+function fillStatic(){document.querySelectorAll('[data-k]').forEach(el=>el.value=S[el.dataset.k]||'')}
+
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset.k){S[t.dataset.k]=t.value}
+  else if(t.dataset.l){S[t.dataset.l][+t.dataset.i][t.dataset.f]=t.value}
+  else return;
+  save();renderPaper();
+});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.add){const k=t.dataset.add;S[k].push({a:'',b:'',c:''});renderList(k);save();renderPaper()}
+  else if(t.dataset.rm){const k=t.dataset.rm;S[k].splice(+t.dataset.i,1);renderList(k);save();renderPaper()}
+  else if(t.dataset.h){S.hab.splice(+t.dataset.h,1);renderChips();save();renderPaper()}
+});
+$('#hab').addEventListener('keydown',e=>{
+  if(e.key!=='Enter')return;e.preventDefault();
+  const v=e.target.value.trim();
+  if(v&&!S.hab.includes(v)&&S.hab.length<12){S.hab.push(v);e.target.value='';renderChips();save();renderPaper()}
+});
+$('#clr').addEventListener('click',()=>{
+  if(!confirm('Apagar tudo o que você preencheu?'))return;
+  S=blank();save();init();$('#msg').textContent='Tudo limpo. Pode começar de novo.';
+});
+window.addEventListener('resize',fit);
+const TABS=['inicio','oficinas','curriculo'];
+function showTab(id,push){
+  if(!TABS.includes(id))id='inicio';
+  document.querySelectorAll('[data-tab]').forEach(el=>el.hidden=el.dataset.tab!==id);
+  document.querySelectorAll('[data-go]').forEach(b=>{const on=b.dataset.go===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});
+  if(push!==false&&location.hash!=='#'+id){try{location.hash=id}catch(e){}}
+  window.scrollTo(0,0);
+  if(id==='curriculo')fit();
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-go],a[href^="#"]');if(!t)return;
+  const id=t.dataset.go||t.getAttribute('href').slice(1);
+  if(!TABS.includes(id))return;
+  e.preventDefault();showTab(id);
+});
+window.addEventListener('hashchange',()=>showTab(location.hash.slice(1),false));
+$('.tabs').addEventListener('keydown',e=>{
+  const i=TABS.indexOf(document.activeElement.dataset.go);
+  if(i<0||!/^Arrow(Left|Right)$/.test(e.key))return;
+  const n=TABS[(i+(e.key==='ArrowRight'?1:TABS.length-1))%TABS.length];
+  showTab(n);document.querySelector('[data-go="'+n+'"]').focus();
+});
+
+const msg=t=>$('#msg').textContent=t;
+$('#pdf').addEventListener('click',async()=>{
+  const fn='curriculo-'+(S.nome.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'primeiro-clique')+'.pdf';
+  msg('Gerando o PDF…');$('#pdf').disabled=true;
+  const holder=document.createElement('div');
+  holder.style.cssText='position:fixed;left:0;top:0;width:794px;z-index:9998';
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:9999;background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;font:600 18px Figtree,sans-serif';
+  ov.textContent='Gerando seu PDF…';
+  const clone=$('#paper').cloneNode(true);holder.appendChild(clone);document.body.appendChild(holder);document.body.appendChild(ov);
+  try{
+    const job=html2pdf().set({margin:0,image:{type:'jpeg',quality:.96},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(clone);
+    await new Promise(r=>setTimeout(r,250));
+    let dl=null;try{dl=window.claude&&await claude.use('downloads')}catch(e){}
+    if(dl){await dl.save({filename:fn,data:await job.outputPdf('blob')});msg('Pronto! Seu currículo foi salvo em PDF.')}
+    else{await job.save(fn);msg('Pronto! Seu currículo foi baixado em PDF.')}
+  }catch(err){
+    msg(err&&err.code==='declined'?'Download cancelado. Clique em Salvar em PDF para tentar de novo.':'Não foi possível gerar o PDF. Tente de novo em instantes.');
+  }finally{holder.remove();ov.remove();$('#pdf').disabled=!S.nome.trim()}
+});
+
+function init(){fillStatic();['edu','cur','proj'].forEach(renderList);renderChips();renderPaper()}
+init();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+showTab(location.hash.slice(1),false);
+</script>
+</body>
+</html>
